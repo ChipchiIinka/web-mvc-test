@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Students</title>
 </head>
 <body class="bg-light">
 
@@ -74,6 +74,7 @@
                 <th class="text-justify">Почта</th>
                 <th class="text-justify">Телефон</th>
                 <th class="text-justify">Адрес</th>
+                <th class="text-justify">Действие</th>
             </tr>
             </thead>
             <tbody>
@@ -85,6 +86,12 @@
                 <td class="align-middle"><span th:text="${student.email}"/></td>
                 <td class="align-middle"><span th:text="${student.phone}"/></td>
                 <td class="align-middle"><span th:text="${student.address}"/></td>
+                <td class="align-middle">
+                    <a th:href="@{${student.id} + '/update_student'}" class="btn btn-outline-warning"
+                       role="button" aria-disabled="true">Изменить</a>
+                    <a th:href="@{${student.id}}" class="btn btn-outline-info"
+                       role="button" aria-disabled="true">Подробнее</a>
+                </td>
             </tr>
             </tbody>
         </table>
