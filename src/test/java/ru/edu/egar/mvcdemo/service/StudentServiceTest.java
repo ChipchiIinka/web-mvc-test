@@ -2,9 +2,11 @@ package ru.edu.egar.mvcdemo.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.edu.egar.mvcdemo.dto.StudentDto;
 import ru.edu.egar.mvcdemo.entity.Student;
@@ -18,8 +20,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class StudentServiceTest {
+    private static final String MOCK_STR = "test";
 
     @Mock
     private StudentRepository repository;
@@ -30,14 +33,18 @@ class StudentServiceTest {
     @InjectMocks
     private StudentService service;
 
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
-
     @Test
     void saveStudent_ShouldSaveStudent() {
-        StudentDto studentDto = StudentDto.builder().build();
+        StudentDto studentDto = StudentDto.builder()
+                .id(1L)
+                .firstName(MOCK_STR)
+                .lastName(MOCK_STR)
+                .patronymic(MOCK_STR)
+                .email("blabla@mail.com")
+                .age(20)
+                .phone("+78005553535")
+                .address(MOCK_STR)
+                .build();
         Student student = new Student();
 
         when(mapper.toEntity(studentDto, student)).thenReturn(student);

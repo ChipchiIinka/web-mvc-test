@@ -10,6 +10,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentMapperTest {
+    private static final String MOCK_STR = "test";
 
     private StudentMapper mapper;
 
@@ -20,8 +21,8 @@ class StudentMapperTest {
 
     @Test
     void toListDto_ShouldReturnListOfStudentDtos() {
-        Student student1 = createStudent(1L, "fname", "lname", "patronymic", 20, "maill@maill.com", "12-12-12", "qwerty");
-        Student student2 = createStudent(2L, "fname2", "lname2", "patronymic2", 22, "maill2@maill.com", "12-12-22", "qwerty2");
+        Student student1 = createStudent(1L, MOCK_STR, MOCK_STR, MOCK_STR, 20, "maill@maill.com", "12-12-12", MOCK_STR);
+        Student student2 = createStudent(2L, MOCK_STR, MOCK_STR, MOCK_STR, 22, "maill2@maill.com", "12-12-22", MOCK_STR);
 
         List<Student> students = List.of(student1, student2);
 
@@ -35,7 +36,7 @@ class StudentMapperTest {
 
     @Test
     void toDto_ShouldReturnStudentDto() {
-        Student student = createStudent(1L, "fname", "lname", "patronymic", 20, "maill@maill.com", "12-12-12", "qwerty");
+        Student student = createStudent(1L, MOCK_STR, MOCK_STR, MOCK_STR, 20, "maill@maill.com", "12-12-12", MOCK_STR);
 
         StudentDto studentDto = mapper.toDto(student);
 
@@ -54,13 +55,13 @@ class StudentMapperTest {
     void toEntity_ShouldUpdateStudentEntity() {
         StudentDto studentDto = StudentDto.builder()
                 .id(1L)
-                .firstName("fname")
-                .lastName("lname")
-                .patronymic("patronymic")
+                .firstName(MOCK_STR)
+                .lastName(MOCK_STR)
+                .patronymic(MOCK_STR)
                 .age(20)
                 .email("maill@maill.com")
                 .phone("12-12-12")
-                .address("qwerty")
+                .address(MOCK_STR)
                 .build();
 
         Student student = new Student();
